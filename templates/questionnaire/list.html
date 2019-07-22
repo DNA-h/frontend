@@ -1,0 +1,14 @@
+{% extends 'questionnaire/base.html' %}
+{% load i18n %}
+
+{% block body %}
+<div id="intro">
+	<h1>{% trans "Questions"%}</h1>
+
+	<ul>
+		{% for questionnaire in questionnaires %}
+		<li><a href="{{ questionnaire.get_absolute_url }}">{% trans ""%} {{category.name}} {{questionnaire.name}}</a></li>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

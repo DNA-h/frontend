@@ -1,0 +1,10 @@
+{% extends 'questionnaire/base.html' %}
+{% load i18n %}
+
+{% block title %} {% trans "Questionnaire completed" %}{% endblock title %}
+
+{% block body %}
+<h1>{% trans "questionnaire completed" %}</h1>
+<p> {% trans "Sorry! Your already replied to our questionnaire" %} "{{ questionnaire.name }}". </p>
+<p> <a href="{% url "questionnaire-list" %}">{% trans "Back to questionnaire list" %}</a> </p>
+{% endblock %}

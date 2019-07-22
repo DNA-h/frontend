@@ -1,0 +1,13 @@
+{% extends 'questionnaire/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "questionnaire submitted" %}{% endblock title %}
+
+{% block body %}
+<h1>{% trans "questionnaire submitted"%}</h1>
+<p>
+    <div class="alert alert-success">
+       {% trans "Thanks! Your answers have been saved" %}
+    </div>
+</p>
+{% endblock %}
