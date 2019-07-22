@@ -228,7 +228,6 @@ class ResponseForm(models.ModelForm):
                     answer = Answer(question=question)
                 if question.type == Question.SELECT_IMAGE:
                     value, img_src = field_value.split(":", 1)
-                    # TODO
                 answer.body = field_value
                 data["responses"].append((answer.question.id, answer.body))
                 LOGGER.debug(
