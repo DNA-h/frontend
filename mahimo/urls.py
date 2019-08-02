@@ -85,10 +85,10 @@ urlpatterns = [
     # url(r"^crm/"/, include("crm.urls")),
     # url(r"^clinic/", include("clinic.urls")),
     url(r"^q/", include("questionnaire.urls")),
-    # url(r'^api-auth/', include('rest_framework.urls'))
+    # url(r'^api-auth/', include('rest_framework.urls')),
     url(r"^", include(router.urls)),
     # url(r"^accounts/",
     #     include("rest_framework.urls", namespace="rest_framework")),
 
-    url(r'^index/',HomePageView.as_view(),name="index"),
+    path('',HomePageView.as_view(),name="home"),
 ]

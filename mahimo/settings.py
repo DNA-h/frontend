@@ -124,6 +124,7 @@ INSTALLED_APPS = [
     'djstripe',
     'drf_yasg',
     'constance',
+    'bootstrap4'
 
 ]
 
