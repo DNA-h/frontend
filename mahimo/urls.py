@@ -16,12 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
-from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets, permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-import questionnaire
-from clients.view import HomePageView
+from allauth.view import HomePageView
 from questionnaire.views import *
 admin.autodiscover()
 
@@ -72,23 +70,24 @@ router = routers.DefaultRouter()
 # router.register(r'clients', ClientViewSet)
 
 urlpatterns = [
-    url(r"^docs(?P<format>\.json|\.yaml)$", schema_view.without_ui(
-        cache_timeout=0), name="schema-json"),
-    url(r"^docs/$", schema_view.with_ui("swagger",
-                                        cache_timeout=0), name="schema-swagger-ui"),
-    url(r"^redoc/$",
-        schema_view.with_ui("redoc", cache_timeout=0),
-        name="schema-redoc"),
+    # url(r"^docs(?P<format>\.json|\.yaml)$", schema_view.without_ui(
+    #     cache_timeout=0), name="schema-json"),
+    # url(r"^docs/$", schema_view.with_ui("swagger",
+    #                                     cache_timeout=0), name="schema-swagger-ui"),
+    # path(r"^redoc/$",
+    #     schema_view.with_ui("redoc", cache_timeout=0),
+    #     name="schema-redoc"),
     path("admin/", admin.site.urls),
-    path("stripe/", include("djstripe.urls", namespace="djstripe")),
-    url(r'^accounts/', include('allauth.urls')),
+    # path("stripe/", include("djstripe.urls", namespace="djstripe")),
+    path(r'accounts/', include('allauth.urls')),
     # url(r"^crm/"/, include("crm.urls")),
     # url(r"^clinic/", include("clinic.urls")),
-    url(r"^q/", include("questionnaire.urls")),
+    path(r"q/", include("questionnaire.urls")),
+    path('', HomePageView.as_view(), name="home"),
+
     # url(r'^api-auth/', include('rest_framework.urls')),
-    url(r"^", include(router.urls)),
+    # url(r"^", include(router.urls)),
     # url(r"^accounts/",
     #     include("rest_framework.urls", namespace="rest_framework")),
 
-    path('',HomePageView.as_view(),name="home"),
 ]
