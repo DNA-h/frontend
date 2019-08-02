@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.decorators import login_required
-from django.http.response import HttpResponse, JsonResponse
+from django.http.response import HttpResponse
 from questionnaire.exporter.csv.questionnaire2csv import Questionnaire2Csv
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 from questionnaire.forms import ResponseForm
-from questionnaire.models import Category, Questionnaire, Question
-from rest_framework.decorators import api_view
-from django.core import serializers
-
+from questionnaire.models import Category, Questionnaire
 
 class ConfirmView(TemplateView):
     template_name = "questionnaire/confirm.html"
@@ -29,28 +26,6 @@ class IndexView(TemplateView):
             questionnaires = questionnaires.filter(need_logged_user=False)
         context["questionnaires"] = questionnaires
         return context
-
-@api_view(['GET'])
-def get_questionnaire_list(request):
-        obj = {}
-        try:
-            questionnaires = Questionnaire.objects.filter(is_published=True)
-            if not request.user.is_authenticated:
-                questionnaires = questionnaires.filter(need_logged_user=False)
-            # context["questionnaires"] = questionnaires
-            # return context
-            for questionnaire in questionnaires:
-                r = {}
-                id = questionnaire.id
-                r["questionnaire_name"] = questionnaire.name
-                r["questionnaire_description"] = questionnaire.description
-                r["questionnaire_is_published"] = questionnaire.is_published
-                r["questionnaire_need_logged_user"] = questionnaire.need_logged_user
-                obj["id = %s" % id] = r
-            return JsonResponse(obj, safe=False)
-        except questionnaires:
-            questionnaires = None
-            return HttpResponse("سوالی برای شما یافت نشد.")
 
 
 class QuestionnaireCompleted(TemplateView):
@@ -135,56 +110,6 @@ class QuestionnaireDetail(View):
                 template_name = "questionnaire/one_page_questionnaire.html"
         return render(request, template_name, context)
 
-@api_view(['GET'])
-def get_question_list(request,id):
-    obj = {}
-    try:
-        questionnaires = Questionnaire.objects.filter(id=id , is_published=True)
-        for questionnaire in questionnaires:
-            categories = Category.objects.filter(questionnaire=questionnaire)
-            for category in categories:
-                questions = Question.objects.filter(category=category)
-                if questions:
-                    for question in questions:
-                        r = {}
-                        id = question.id
-                        r["question_text"] = question.text
-                        r["question_order"] = question.order
-                        r["question_required"] = question.required
-                        r["category_name"] = question.category.name
-                        r["category_order"] = question.category.order
-                        r["category_description"] = question.category.description
-                        r["questionnaire_name"] = question.questionnaire.name
-                        r["questionnaire_description"] = question.questionnaire.description
-                        r["questionnaire_is_published"] = question.questionnaire.is_published
-                        r["questionnaire_need_logged_user"] = question.questionnaire.need_logged_user
-                        obj["Q%s" % id] = r
-        return JsonResponse(obj, safe=False)
-    except questionnaire:
-        questionnaires = None
-        return HttpResponse("سوالی برای شما یافت نشد.")
-
-
-@api_view(['POST'])
-def get_question_detail(request,id ):
-    try:
-        question = Question.objects.get(id=id)
-        r = {}
-        r["question_text"] = question.text
-        r["question_order"] = question.order
-        r["question_required"] = question.required
-        r["category_name"] = question.category.name
-        r["category_order"] = question.category.order
-        r["category_description"] = question.category.description
-        r["questionnaire_name"] = question.questionnaire.name
-        r["questionnaire_description"] = question.questionnaire.description
-        r["questionnaire_is_published"] = question.questionnaire.is_published
-        r["questionnaire_need_logged_user"] = question.questionnaire.need_logged_user
-        return JsonResponse(r, safe=False)
-    except question:
-        question = None
-        return HttpResponse("سوال یافت نشد.")
-
 
 
 def serve_unprotected_result_csv(questionnaire):
@@ -210,10 +135,3 @@ def serve_result_csv(request, primary_key):
     if questionnaire.need_logged_user:
         return serve_protected_result(request, questionnaire)
     return serve_unprotected_result_csv(questionnaire)
-#
-# def questionnaire_result(request,primary_key):
-#     try:
-#         questionnaire = get_object_or_404(Questionnaire, pk=primary_key)
-#         if questionnaire.need_logged_user:
-#             return serve_protected_result(request, questionnaire)
-#         return serve_unprotected_result_csv(questionnaire)
