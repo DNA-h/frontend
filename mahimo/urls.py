@@ -19,7 +19,7 @@ from django.conf.urls import url, include
 from rest_framework import routers, serializers, viewsets, permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-from allauth.view import HomePageView
+from user.views import HomePageView
 from questionnaire.views import *
 admin.autodiscover()
 
@@ -79,12 +79,13 @@ urlpatterns = [
     #     name="schema-redoc"),
     path("admin/", admin.site.urls),
     # path("stripe/", include("djstripe.urls", namespace="djstripe")),
-    path(r'accounts/', include('allauth.urls')),
+    # path(r'accounts/', include('allauth.urls')),
     # url(r"^crm/"/, include("crm.urls")),
     # url(r"^clinic/", include("clinic.urls")),
     path(r"q/", include("questionnaire.urls")),
     path('', HomePageView.as_view(), name="home"),
-
+    path(r'^rest-auth/', include('rest_auth.urls')),
+    path('', include('drfpasswordless.urls')),
     # url(r'^api-auth/', include('rest_framework.urls')),
     # url(r"^", include(router.urls)),
     # url(r"^accounts/",

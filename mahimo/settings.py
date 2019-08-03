@@ -95,8 +95,7 @@ LOGGING = {
     }
 }
 
-AUTH_USER_MODEL = 'allauth.User'
-
+AUTH_USER_MODEL = 'user.User'
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -106,22 +105,25 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    'rest_framework',
+    'rest_framework.authtoken',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
     # 'allauth.socialaccount.providers.auth0',
     # 'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.instagram',
     # 'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.github',
-    'rest_framework',
+    # 'allauth.socialaccount.providers.github',
     'corsheaders',
     'questionnaire',
-    'djstripe',
+    # 'djstripe',
     'drf_yasg',
     'constance',
-    'bootstrap4',
-
+    'drfpasswordless',
+    # 'bootstrap4',
+    'rest_auth',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -136,8 +138,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'mahimo.urls'
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 TEMPLATES = [
     {
@@ -156,11 +156,11 @@ TEMPLATES = [
     },
 ]
 
-# AllAuth Configuration
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
+# # AllAuth Configuration
+# AUTHENTICATION_BACKENDS = (
+#     'django.contrib.auth.backends.ModelBackend',
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# )
 
 SITE_ID = 1
 
@@ -246,8 +246,10 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
-}
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES':
+        ('rest_framework.authentication.TokenAuthentication',)
+    }
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
@@ -255,6 +257,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10,
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    'PASSWORDLESS_AUTH_TYPES': ['EMAIL', 'MOBILE'],
     'DEFAULT_AUTHENTICATION_CLASSES':
         (
 	'rest_framework.authentication.BasicAuthentication',
@@ -272,23 +275,16 @@ CONSTANCE_CONFIG_FIELDSETS = {
     'General Options': ('SITE_NAME', 'SITE_DESCRIPTION'),
     'Theme Options': ('THEME',),
 }
-
 CHOICES_SEPARATOR = ','
 
-CORS_ORIGIN_ALLOW_ALL = False
 
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
-    'http://localhost:3001',
-)
-
-LOGIN_REDIRECT_URL = '/index/'
-
-SWAGGER_SETTINGS = {
-    'LOGIN_URL': '/accounts/login',
-    'LOGOUT_URL': '/accounts/logout',
-}
-
+#Email setting
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ddkyuma.programmer@gmail.com'
+EMAIL_HOST_PASSWORD = 'farzad1369'
+EMAIL_PORT = 587
 
 try:
     from local_settings import *

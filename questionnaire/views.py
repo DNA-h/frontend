@@ -165,7 +165,7 @@ def get_question_list(request,id):
         return HttpResponse("سوالی برای شما یافت نشد.")
 
 
-@api_view(['POST'])
+@api_view(['POST','GET'])
 def get_question_detail(request,id ):
     try:
         question = Question.objects.get(id=id)
