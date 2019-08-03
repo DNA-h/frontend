@@ -33,7 +33,7 @@ class AnswerBaseInline(admin.StackedInline):
 
 
 class ResponseAdmin(admin.ModelAdmin):
-    list_display = ("interview_uuid", "questionnaire", "created", "user")
+    list_display = ("questionnaire", "user", "created","interview_uuid")
     list_filter = ("questionnaire", "created")
     date_hierarchy = "created"
     inlines = [AnswerBaseInline]

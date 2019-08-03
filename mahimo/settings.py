@@ -13,16 +13,14 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import clients
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "3_dcc%ogq85%l2u0ils5#jvdk&2)tg1rzv9kp33w4)*7(mi9p5"
+SECRET_KEY = '2&gp*o7hkmo#%duhzcq+p@9&syd5_m&!gtl_()ad5i*%lce+gt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['hussein-ubuntu', '127.0.0.1', 'localhost', '16a8a512.ngrok.io']
+ALLOWED_HOSTS = [ 'localhost','127.0.0.1',]
 
 LOGGING = {
     'version': 1,
@@ -97,8 +95,7 @@ LOGGING = {
     }
 }
 
-
-AUTH_USER_MODEL = 'clients.User'
+AUTH_USER_MODEL = 'allauth.User'
 
 # Application definition
 INSTALLED_APPS = [
@@ -119,12 +116,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
     'rest_framework',
     'corsheaders',
-    'clients',
     'questionnaire',
     'djstripe',
     'drf_yasg',
     'constance',
-    'bootstrap4'
+    'bootstrap4',
 
 ]
 

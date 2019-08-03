@@ -497,7 +497,7 @@ class Question(models.Model):
     def __str__(self):
         msg = "Question '{}' ".format(self.text)
         if self.required:
-            msg += "(*) "
+            msg += " "
         msg += "{}".format(self.get_clean_choices())
         return msg
 
