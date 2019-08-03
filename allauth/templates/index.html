@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-122337197-1', { 'app_name': 'Mahimo' });
+
+      gtag('event', 'screen_view', {
+          'screen_name' : 'index.html'
+        });
+
+    </script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="yandex-verification" content="c51536265ae4011e" />
+    <meta name="google-site-verification" content="bywtOIGZN_ia2kZEu5xKWIZjGaE14EAZbj9FDtFi39U"/>
+{#    <link rel="alternate" hreflang="en-US" href="https://karbamabnd.ir/"/>#}
+    <title>Mahimo</title>
+    <meta name="description"
+          content="Iran,[a] also called Persia,[14] and officially the Islamic Republic of Iran,[b] is a country in Western Asia.[15][16] With 82 million inhabitants,[10] Iran is the world's 18th most populous country.[17] Its territory spans 1,648,195 km2 (636,372 sq mi), making it the second largest country in the Middle East and the 17th largest in the world. Iran is bordered to the northwest by Armenia and the Republic of Azerbaijan,[c] to the north by the Caspian Sea, to the northeast by Turkmenistan, to the east by Afghanistan and Pakistan, to the south by the Persian Gulf and the Gulf of Oman, and to the west by Turkey and Iraq. Its central location in Eurasia and Western Asia, and its proximity to the Strait of Hormuz, give it geostrategic importance.[18] Tehran is the political and economic center of Iran, and the largest and most populous city in Western Asia with more than 8.8 million residents in the city and 15 million in the larger metropolitan area.[19] ">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/skew.css' %}">
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="{% static 'assets/css/index.css' %}">
+    <script src="{% static 'assets/js/index.js' %}"></script>
+
+</head>
+<body>
+
+<main class="container-fluid" role="main">
+    <div id="splash" class="row text-center bg-skew" style="padding: 200px 0; padding-bottom: 0; margin-top: -190px;">
+        <div class="col-lg-12 unskew">
+            <div id="main-logo" class="rounded-circle">
+                <a href="/">
+                    <img src="{% static "assets/images/mahimo-logo-70.png" %}" alt="mahimo-logo">
+                </a>
+            </div>
+            <h1 style="font-size: 100px;">Mahimo</h1>
+            <h2 style="margin-bottom: 15px;">.........Mahimo........</h2>
+            <div id="download-link-section" class="row justify-content-center">
+                <div class="col-lg-4">
+                    <div id="download-link-form" style="margin-top: 10px;">{% csrf_token %}
+                        <div class="input-group mb-3">
+							<div class="blue_button">
+								<a href="https://karbamabnd.ir/web_app" target="_blank" class="div_button" rel="nofollow" style="color: rgb(255, 255, 255); font-family: 'Yekan', sans-serif, Tahoma;">نسخه وب - برای کاربران iOS</a>
+							</div>
+							<div class="yellow_button">
+								<a href="https://play.google.com/store/apps/details?id=com.dna.android.karbama" target="_blank" class="div_button" rel="nofollow" style="color: rgb(255, 255, 255); font-family: 'Yekan', sans-serif, Tahoma;">دانلود نسخه اندروید - گوگل پلی</a>
+							</div>
+							<div class="yellow_button">
+								<a href="https://cafebazaar.ir/app/com.dna.android.karbama/?l=fa" target="_blank" class="div_button" rel="nofollow" style="color: rgb(255, 255, 255); font-family: 'Yekan', sans-serif, Tahoma;">دانلود نسخه اندروید - کافه بازار</a>
+							</div>
+							<div class="yellow_button">
+								<a href="https://karbamabnd.ir/static/assets/app/Karbama.apk" target="_blank" class="div_button" rel="nofollow" style="color: rgb(255, 255, 255); font-family: 'Yekan', sans-serif, Tahoma;">دانلود نسخه اندروید - لینک مستقیم</a>
+							</div>
+							<div class="yellow_button">
+								<a href="https://myket.ir/app/com.dna.android.karbama" target="_blank" class="div_button" rel="nofollow" style="color: rgb(255, 255, 255); font-family: 'Yekan', sans-serif, Tahoma;">دانلود نسخه اندروید - مایکت</a>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{##}
+{#    <div class="row featurettes bg-skew" style="overflow: hidden;">#}
+{#        <div class="col-lg-3 unskew" style="margin-right: 8%;">#}
+{#            <span style="color:#FFF; font-size: 70px; font-weight: bold;">20</span>#}
+{#            <h3>دارای 20 حوزه خدمات</h3>#}
+{#            <p>‫اپلیکیشن کارباما این امکان رو به شما میدهد که تمامی خدمات روزمره خودتون رو از طریق اپلیکیشن سفارش#}
+{#                دهید.لذت تجربه یک زندگی راحت رو با ما تجربه کنید.‬</p>#}
+{#        </div><!-- /.col-lg-4 -->#}
+{#        <div class="col-lg-3 unskew">#}
+{#            <img class="" src="/static/assets/images/engineer.png" alt="engineer icon" width="75" height="75">#}
+{#            <h3>بیش از 50 نیروی متخصص</h3>#}
+{#            <p>‫تیم کارباما متشکل از نیروهای متخصص و دوره دیده آماده خدمات رسانی به همشهریان عزیز میباشند.هدف ما#}
+{#                بالابردن سطح خدمت رسانی به مردم است.‬</p>#}
+{#        </div><!-- /.col-lg-4 -->#}
+{#        <div class="col-lg-3 unskew">#}
+{#            <img class="" src="/static/assets/images/icon(1).png" alt="check icon" width="75" height="75">#}
+{#            <h3>تضمین کیفیت کار</h3>#}
+{#            <p>بهره گیری از نیروهای کارآزموده این امکان را میدهد در مقابل خدمات روزمره ضمانت کیفیت کار داشته باشید.</p>#}
+{#        </div><!-- /.col-lg-4 -->#}
+{#    </div><!-- /.row -->#}
+{##}
+{#    <div class="row bg-skew justify-content-center align-items-center" id="services-carousel">#}
+{#        <div class="col-lg-12" style="padding-left: 0; padding-right: 0;">#}
+{#            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">#}
+{#                <div class="carousel-inner" role="listbox">#}
+{#                    <div class="carousel-item active" style="background: #BBB;">#}
+{#                        <div class="row justify-content-center unskew">#}
+{#                            <img src="/static/assets/images/web-carousel-ac.jpg" alt="" class="carousel-backwall">#}
+{#                            <div class="col-lg-3">#}
+{#                                <img class="d-block img-fluid" src="/static/assets/images/cooler%20icon.png"#}
+{#                                     alt="First slide">#}
+{#                            </div>#}
+{#                            <div class="col-lg-4">#}
+{#                                <span style="font-size: 70px; color: #FFF;"> کولر گازی</span>#}
+{#                                <p>تعمیرات ، سرویس و نصب کولرهای اسپلیت و پنجره ای.دیگه در فصل گرما حل مشکلات کولرتون یک#}
+{#                                    دردسر نخواهد بود.</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="carousel-item">#}
+{#                        <div class="row justify-content-center unskew">#}
+{#                            <img src="/static/assets/images/web-carousel-ha.jpg" alt="" class="carousel-backwall">#}
+{#                            <div class="col-lg-3">#}
+{#                                <img class="d-block img-fluid service-icon" style="display: block;"#}
+{#                                     src="/static/assets/images/tools.png" alt="First slide">#}
+{#                            </div>#}
+{#                            <div class="col-lg-4">#}
+{#                                <span style="font-size: 70px; color: #FFF;">لوازم خانگی</span>#}
+{#                                <p>تعمیرات لوازم خانگی خود رو به ما بسپارید. یخچال ، ماشین لباسشویی ، ماشین ظرفشویی ،#}
+{#                                    هود ، جاروبرقی و اجاق گاز</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="carousel-item" style="background: #BBB;">#}
+{#                        <div class="row justify-content-center unskew">#}
+{#                            <img src="/static/assets/images/web-carousel-cleaning.jpg" alt="" class="carousel-backwall">#}
+{#                            <div class="col-lg-3">#}
+{#                                <img class="d-block img-fluid service-icon" src="/static/assets/images/room.png"#}
+{#                                     alt="Second slide">#}
+{#                            </div>#}
+{#                            <div class="col-lg-4">#}
+{#                                <span style="font-size: 70px; color: #FFF;">نظافت منزل</span>#}
+{#                                <p>نظافت منازل مسکونی ، اداری و مشاعات با استفاده از نفرات مورد اطمینان</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="carousel-item" style="background: #BBB;">#}
+{#                        <div class="row justify-content-center unskew">#}
+{#                            <img src="/static/assets/images/web-carousel-laundry.jpg" alt="" class="carousel-backwall">#}
+{#                            <div class="col-lg-3">#}
+{#                                <img class="d-block img-fluid service-icon" src="/static/assets/images/laundry(2).png"#}
+{#                                     alt="Third slide">#}
+{#                            </div>#}
+{#                            <div class="col-lg-4">#}
+{#                                <span style="font-size: 70px; color: #FFF;">خشکشویی</span>#}
+{#                                <p>از این به بعد دیگه نیاز نیست کلی لباس هاتون رو ببرید خشکشویی.ما لباس هاتون رو درب#}
+{#                                    منزل تحویل میگیریم خشکشویی و اتو میکنیم و درب منزل به شما تحویل میدیم</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="carousel-item" style="background: #BBB;">#}
+{#                        <div class="row justify-content-center unskew">#}
+{#                            <img src="/static/assets/images/web-carousel-carpet.jpg" alt="" class="carousel-backwall">#}
+{#                            <div class="col-lg-3">#}
+{#                                <img class="d-block img-fluid service-icon" src="/static/assets/images/rug(3).png"#}
+{#                                     alt="Fourth slide">#}
+{#                            </div>#}
+{#                            <div class="col-lg-4">#}
+{#                                <span style="font-size: 70px; color: #FFF;">قالیشویی</span>#}
+{#                                <p>پیدا کردن یک قالیشویی خوب و انجام به موقع خدمات دیگه یک دردسر براتون نخواهد بود.</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="carousel-item" style="background: #BBB;">#}
+{#                        <div class="row justify-content-center unskew">#}
+{#                            <img src="/static/assets/images/web-carousel-autobar.jpg" alt="" class="carousel-backwall">#}
+{#                            <div class="col-lg-3">#}
+{#                                <img class="d-block img-fluid service-icon" src="/static/assets/images/trucks.png"#}
+{#                                     alt="Fifth slide">#}
+{#                            </div>#}
+{#                            <div class="col-lg-4">#}
+{#                                <span style="font-size: 70px; color: #FFF;">اتوبار</span>#}
+{#                                <p>در جابه جایی منزل تون همراتون هستیم.با درخواست نیسان بار و وانت بار در جابه جایی های#}
+{#                                    درون شهری نیزکنار شما هستیم.</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="carousel-item" style="background: #BBB;">#}
+{#                        <div class="row justify-content-center unskew">#}
+{#                            <img src="/static/assets/images/web-carousel-emdadkhodro.jpg" alt=""#}
+{#                                 class="carousel-backwall">#}
+{#                            <div class="col-lg-3">#}
+{#                                <img class="d-block img-fluid service-icon" src="/static/assets/images/tow-truck(1).png"#}
+{#                                     alt="Sixth slide">#}
+{#                            </div>#}
+{#                            <div class="col-lg-4">#}
+{#                                <span style="font-size: 70px; color: #FFF;">امدادخودرو</span>#}
+{#                                <p>همیشه گوش بزنگ امداد رسانی به شما هستیم.درخواست خودرو نیسان یدک کش و خودرو بر از طریق#}
+{#                                    کارباما</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">#}
+{#                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
+{#                    <span class="sr-only">Previous</span>#}
+{#                </a>#}
+{#                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">#}
+{#                    <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
+{#                    <span class="sr-only">Next</span>#}
+{#                </a>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <style>#}
+{#            #services-carousel p{#}
+{#                color: #FFF;#}
+{#            }#}
+{##}
+{##}
+{#    </style>#}
+{##}
+
+    <div class="container">
+
+        <div class="row management" style="justify-content: flex-end">
+            <img id='jxlznbqenbqenbqeoeukjzpe' style='cursor:pointer; float: left; margin-top: 0px;'
+                 onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=122287&p=rfthuiwkuiwkuiwkmcsijyoe", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")'
+                 alt='' src='https://logo.samandehi.ir/logo.aspx?id=122287&p=nbpdodrfodrfodrfaqgwyndt'/>
+            <img src="https://trustseal.enamad.ir/logo.aspx?id=93098&amp;p=7QBO9bhXk2BGM3sp" alt=""
+                 onclick="window.open(&quot;https://trustseal.enamad.ir/Verify.aspx?id=93098&amp;p=7QBO9bhXk2BGM3sp&quot;, &quot;Popup&quot;,&quot;toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30&quot;)"
+                 style="cursor:pointer" id="7QBO9bhXk2BGM3sp">
+            <img src="/static/assets/images/ecunion-ir-logo.png" alt=""
+                 onclick="window.open('https://ecunion.ir/verify/karbamabnd.ir?token=54850865bf3ffcc0e5cc', 'Popup','toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30')"
+                 style="cursor:pointer">
+            <div class="col-md-12">
+                <h2 class="management-heading">Iran </h2>
+                <p class="lead">
+Iran is home to one of the world's oldest civilizations,[20][21] beginning with the formation of the Elamite kingdoms in the fourth millennium BCE. It was first unified by the Iranian Medes in the seventh century BCE,[22] and reached its territorial height in the sixth century BCE under Cyrus the Great, whose Achaemenid Empire stretched from Eastern Europe to the Indus Valley, one of the largest empires in history.[23] The empire fell to Alexander the Great in the fourth century BCE and was divided into several Hellenistic states. An Iranian rebellion established the Parthian Empire in the third century BCE, which was succeeded in the third century CE by the Sasanian Empire, a leading world power for the next four centuries.[24][25]
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+{#    <div class="modal fade" id="jobFormModal">#}
+{#        <div class="modal-dialog">#}
+{#            <div class="modal-content">#}
+{##}
+{#                <!-- Modal Header -->#}
+{#                <div class="modal-header">#}
+{#                    <h4 class="modal-title">فرم درخواست همکاری</h4>#}
+{#                    <button type="button" class="close" data-dismiss="modal" style="margin: -1rem auto -1rem -1rem;">#}
+{#                        &times;#}
+{#                    </button>#}
+{#                </div>#}
+{##}
+{#                <!-- Modal body -->#}
+{#                <div class="modal-body">#}
+{#                    <div style="display: none;" class="alert alert-success" id="send_success">#}
+{#                        <button type="button" class="close" data-dismiss="alert">x</button>#}
+{#                        فرم درخواست ارسال شد.#}
+{#                    </div>#}
+{#                    <form id="jobForm">{% csrf_token %}#}
+{#                        <div class="form-group">#}
+{#                            <label for="name">نام و نام خانوادگی</label>#}
+{#                            <input required="required" name="name" type="text" class="form-control" id="name"#}
+{#                                   placeholder="نام و نام خانوادگی">#}
+{#                        </div>#}
+{#                        <div class="form-group">#}
+{#                            <label for="cell_num">شماره تماس</label>#}
+{#                            <input required="required" name="cell_num" type="tel" class="form-control" id="cell_num"#}
+{#                                   placeholder="09121234567">#}
+{#                        </div>#}
+{#                        <div class="form-group">#}
+{#                            <label for="skill">تخصص</label>#}
+{#                            <input name="skill" type="text" class="form-control" id="skill" placeholder="خشک‌شویی">#}
+{#                        </div>#}
+{#                        <div class="form-group">#}
+{#                            <label for="description">توضیحات</label>#}
+{#                            <textarea name="description" class="form-control" id="description" rows="3"></textarea>#}
+{#                        </div>#}
+{#                        <button type="button" id="job_form_submit" class="btn btn-primary">ارسال</button>#}
+{#                    </form>#}
+{#                </div>#}
+{##}
+{#                <!-- Modal footer -->#}
+{#                <div class="modal-footer">#}
+{#                    <div style="text-align: center;" class="alert alert-light" role="alert">#}
+{#                        اطلاعات پر شده در این فرم درخواست به مدیریت منابع انسانی فرستاده می‌شود و نتیجه آن در اسرع وقت#}
+{#                        برای شما ارسال می‌گردد.#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div id="career-section" class="row text-center bg-skew">#}
+{#        <div class="col-lg-12">#}
+{#            <img class="unskew" style="float: right; margin-top: -22px;" src="/static/assets/images/labour%2011.png"#}
+{#                 alt="">#}
+{#            <button class="unskew" id="big-blue-butt" type="button" data-toggle="modal" data-target="#jobFormModal">#}
+{#                <span>همکاری با کارباما</span>#}
+{#            </button>#}
+{#            <img class="unskew" style="float: left; margin-top: -22px;" src="/static/assets/images/labour%2022.png"#}
+{#                 alt="">#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <!--#}
+{##}
+{##}
+{#    <div id="testimonial-section" class="container" style="padding-bottom: 100px;z-index: 2; position: relative; overflow: hidden;">#}
+{#        <div class="row bg-skew">#}
+{#        <div class="col-lg-6 unskew">#}
+{#            <div class="testimonial">#}
+{#                <div class="avatar mx-auto my-3">#}
+{#                    <img src="" class="rounded-circle z-depth-1 img-fluid">#}
+{#                </div>#}
+{##}
+{#                <h4 class="mb-3 dark-grey-text">#}
+{#                    <strong>حمید درخشان</strong>#}
+{#                </h4>#}
+{#                <h6 class="mb-3 font-weight-bold blue-text">۱۰ دی ۱۳۹۷</h6>#}
+{#                <p>#}
+{#                    <i class="fa fa-quote-left grey-text"></i>#}
+{#                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده#}
+{#                    از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و#}
+{#                    برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.#}
+{#                </p>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="col-lg-6 unskew">#}
+{#            <div class="testimonial">#}
+{#                <div class="avatar mx-auto my-3">#}
+{#                    <img src="" class="rounded-circle z-depth-1 img-fluid">#}
+{#                </div>#}
+{#                <h4 class="mb-3 dark-grey-text">#}
+{#                    <strong>حمید درخشان</strong>#}
+{#                </h4>#}
+{#                <h6 class="mb-3 font-weight-bold blue-text">۱۰ دی ۱۳۹۷</h6>#}
+{#                <p>#}
+{#                    <i class="fa fa-quote-left grey-text"></i>#}
+{#                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده#}
+{#                    از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و#}
+{#                    برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.#}
+{#                </p>#}
+{#            </div>#}
+{#      </div>#}
+{#    </div>#}
+{#    </div>#}
+{##}
+{##}
+{##}
+{#    <div class="row bg-skew justify-content-center align-items-center" id="banners">#}
+{#    <div class="col-lg-12" style="padding-left: 0; padding-right: 0;">#}
+{#        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">#}
+{#          <div class="carousel-inner" role="listbox">#}
+{#            <div class="carousel-item active" style="background: #BBB;">#}
+{#                <div class="row justify-content-center unskew">#}
+{#                    <div class="col-lg-2" id="highetSetter">#}
+{#                    </div>#}
+{#                    <div class="col-lg-4" id="objects">#}
+{#                        <a href="https://itunes.apple.com/gb/app/" target="_blank">#}
+{#                            <img src="/static/assets/images/download_app_store.svg" class="img-responsive img-rounded"#}
+{#                                 width="180" height="60" alt="Karbama App Store download link icon">#}
+{#                        </a>#}
+{#                        <a href="https://play.google.com/store/apps/details?id=com.karbama" target="_blank">#}
+{#                            <img src="/static/assets/images/download_app_google_play.svg" class="img-responsive img-rounded"#}
+{#                                 width="180" height="60" alt="Karbama App Cafe Bazar download link icon">#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <img src="/static/assets/images/Moalem%207%20(2).jpg" alt="" class="carousel-backwall">#}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    </div>#}
+{##}
+{#    -->#}
+{##}
+{#    <!-- Recommendation Form Modal -->#}
+{#    <div class="modal fade" id="recommendationFormModal">#}
+{#        <div class="modal-dialog">#}
+{#            <div class="modal-content">#}
+{##}
+{#                <!-- Modal Header -->#}
+{#                <div class="modal-header">#}
+{#                    <h4 class="modal-title">فرم انتقادات و پیشنهادات</h4>#}
+{#                    <button type="button" class="close" data-dismiss="modal" style="margin: -1rem auto -1rem -1rem;">#}
+{#                        &times;#}
+{#                    </button>#}
+{#                </div>#}
+{##}
+{#                <!-- Modal body -->#}
+{#                <div class="modal-body">#}
+{#                    <div style="display: none;" class="alert alert-success" id="send_success">#}
+{#                        <button type="button" class="close" data-dismiss="alert">x</button>#}
+{#                        فرم ارسال شد.#}
+{#                    </div>#}
+{#                    <form id="recommendationForm">{% csrf_token %}#}
+{#                        <div class="form-group">#}
+{#                            <label for="name">نام و نام خانوادگی</label>#}
+{#                            <input required="required" name="name" type="text" class="form-control" id="name"#}
+{#                                   placeholder="نام و نام خانوادگی">#}
+{#                        </div>#}
+{#                        <div class="form-group">#}
+{#                            <label for="cell_num">شماره تماس</label>#}
+{#                            <input required="required" name="cell_num" type="tel" class="form-control" id="cell_num"#}
+{#                                   placeholder="09XXXXXXXX">#}
+{#                        </div>#}
+{#                        <div class="form-group">#}
+{#                            <label for="description">توضیحات</label>#}
+{#                            <textarea name="description" class="form-control" id="description" rows="3"></textarea>#}
+{#                        </div>#}
+{#                        <button type="button" id="recommendation_form_submit" class="btn btn-primary">ارسال</button>#}
+{#                    </form>#}
+{#                </div>#}
+{##}
+{#                <!-- Modal footer -->#}
+{#                <div class="modal-footer">#}
+{#                    <div style="text-align: center;" class="alert alert-light" role="alert">#}
+{#                        اطلاعات پر شده در این فرم به مدیریت فرستاده می‌شود و نتیجه آن در اسرع وقت برای شما ارسال#}
+{#                        می‌گردد.#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+
+    <!-- Contact Us Modal -->
+    <div class="modal fade" id="contactUsModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">تماس با ما</h4>
+                    <button type="button" class="close" data-dismiss="modal" style="margin: -1rem auto -1rem -1rem;">
+                        &times;
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div>
+                        <p>تلفن پشتیبانی: 07633683796</p>
+                        <p>در صورت هرگونه انتقادات/پيشنهادات/شكايت ميتوانيد به تلفن هاي فوق و يا دفتر شركت مراجعه
+                            فرماييد.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+{#    </div>#}
+{##}
+{##}
+{#    <!-- FOOTER -->#}
+{#    <footer>#}
+{#        <div class="row bg-skew" style="padding-top: 100px; padding-bottom: 150px;">#}
+{#            <div class="col-lg-3 unskew">#}
+{#                <h3>درخواست راهنمایی</h3>#}
+{#                <hr/>#}
+{#                <ul>#}
+{#                    <li><a href="/about-us/">درباره ما</a></li>#}
+{#                    <li><a href="#" data-toggle="modal" data-target="#contactUsModal">تماس با ما</a></li>#}
+{#                    <li><a href="/terms-and-conditions/">قوانین و مقررات</a></li>#}
+{#                </ul>#}
+{#            </div><!-- /.col-lg-4 -->#}
+{#            <div class="col-lg-3 unskew">#}
+{#                <h3>>پيشنهادات و شكايت</h3>#}
+{#                <hr/>#}
+{#                <ul>#}
+{#                    <li><a href="#" data-toggle="modal" data-target="#recommendationFormModal">پيشنهادات و شكايت</a>#}
+{#                    </li>#}
+{#                    <li><a href="#" data-toggle="modal" data-target="#jobFormModal">همکاری با کارباما</a></li>#}
+{#                </ul>#}
+{#            </div><!-- /.col-lg-4 -->#}
+{#            <div class="col-lg-3 unskew">#}
+{#                <h3>خبرنامه</h3>#}
+{#                <hr/>#}
+{#                <p>با عضویت در خانواده بزرگ کارباما از اخبار ، تخفیف ها و پیشنهادات ویژه ما با خبر شوید. </p>#}
+{#                <form class="form-group" id="newsletter-form" action="subscribe">#}
+{#                    <input class="form-control" type="text" placeholder="شماره موبایل خود را وارد کنید">#}
+{#                    <input style="float: left;" class="btn btn-info" type="submit" value="ثبت" id="submit-butt">#}
+{#                </form>#}
+{#            </div><!-- /.col-lg-4 -->#}
+{#            <div class="col-lg-3 unskew">#}
+{#                <ul>#}
+{#                    <li>دفتر مرکزی: بلوار مصطفی خمینی، جنب بیمه پارسیان، طبقه 4ام، موسسه امداد ولایت</li>#}
+{#                    <hr/>#}
+{#                    <li>پشتیبانی: 07633683796</li>#}
+{#                    <hr/>#}
+{#                    <div id="social-butts">#}
+{#                        <a href="emailto:info@karbamabnd.com"><i class="far fa-envelope"></i></a>#}
+{#                        <a href="https://www.instagram.com/karbamabnd/"><i class="fab fa-instagram"></i></a>#}
+{#                    </div>#}
+{#                </ul>#}
+{#            </div><!-- /.col-lg-4 -->#}
+{#        </div><!-- /.row -->#}
+{#        <div class="row" id="subfoot">#}
+{#            <div class="col-lg-12">#}
+{#                <p>کلیه حقوق این سایت به شرکت کارباما تعلق دارد</p>#}
+{#            </div>#}
+{#        </div>#}
+{#    </footer>#}
+</main>
+</body>
+</html>
