@@ -78,6 +78,9 @@ SOCIALACCOUNT_AUTO_SIGNUP = True
 # 'avatar' in settings.INSTALLED_APPS.
 # SOCIALACCOUNT_AVATAR_SUPPORT
 
+ACCOUNT_LOGOUT_ON_GET = True
+
+REST_SESSION_LOGIN = True
 # Dictionary containing provider specific settings.
 SOCIALACCOUNT_PROVIDERS = {
     'github': {

@@ -29,66 +29,17 @@ admin.site.site_header = "Mahimo Admin"
 admin.site.site_title = "Mahimo Admin Portal"
 admin.site.index_title = "Welcome to Mahimo Portal"
 
-schema_view = get_schema_view(
-    openapi.Info(
-        title="Mahimo API",
-        default_version="v1",
-        description="Mahimo API documentation",
-        terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="contact@mahimo.local"),
-        license=openapi.License(name="BSD License"),
-    ),
-    public=True,
-    permission_classes=(permissions.AllowAny, ),
-)
-
-# Serializers define the API representation.
-# class UserSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ('url', 'username', 'email', 'is_staff')
-
-# ViewSets define the view behavior.
-# class UserViewSet(viewsets.ModelViewSet):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-#
-#
-# class ClientSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model = Client
-#         fields = ('slug', 'bio', 'address', 'birth_date')
-#
-#
-# class ClientViewSet(viewsets.ModelViewSet):
-#     queryset = Client.objects.all()
-#     serializer_class = ClientSerializer
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-# router.register(r'users', UserViewSet)
-# router.register(r'clients', ClientViewSet)
 
 urlpatterns = [
-    # url(r"^docs(?P<format>\.json|\.yaml)$", schema_view.without_ui(
-    #     cache_timeout=0), name="schema-json"),
-    # url(r"^docs/$", schema_view.with_ui("swagger",
-    #                                     cache_timeout=0), name="schema-swagger-ui"),
-    # path(r"^redoc/$",
-    #     schema_view.with_ui("redoc", cache_timeout=0),
-    #     name="schema-redoc"),
     path("admin/", admin.site.urls),
     # path("stripe/", include("djstripe.urls", namespace="djstripe")),
-    # path(r'accounts/', include('allauth.urls')),
-    # url(r"^crm/"/, include("crm.urls")),
-    # url(r"^clinic/", include("clinic.urls")),
     path(r"q/", include("questionnaire.urls")),
     path('', HomePageView.as_view(), name="home"),
-    path(r'^rest-auth/', include('rest_auth.urls')),
     path('', include('drfpasswordless.urls')),
-    # url(r'^api-auth/', include('rest_framework.urls')),
-    # url(r"^", include(router.urls)),
-    # url(r"^accounts/",
-    #     include("rest_framework.urls", namespace="rest_framework")),
+    path(r'rest-auth/', include('rest_auth.urls')),
+    path(r'rest-auth/registration/', include('rest_auth.registration.urls'))
 
 ]

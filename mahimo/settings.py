@@ -104,27 +104,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
     'rest_framework',
     'rest_framework.authtoken',
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.auth0',
-    # 'allauth.socialaccount.providers.google',
-    # 'allauth.socialaccount.providers.instagram',
-    # 'allauth.socialaccount.providers.facebook',
-    # 'allauth.socialaccount.providers.github',
+    'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
     'corsheaders',
     'questionnaire',
     # 'djstripe',
     'drf_yasg',
     'constance',
     'drfpasswordless',
-    # 'bootstrap4',
-    'rest_auth',
+    'bootstrap4',
     'user',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -162,7 +162,6 @@ TEMPLATES = [
 #     'allauth.account.auth_backends.AuthenticationBackend',
 # )
 
-SITE_ID = 1
 
 
 WSGI_APPLICATION = 'mahimo.wsgi.application'
@@ -198,7 +197,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
         'OPTIONS': {
-            'min_length': 9,
+            'min_length': 4,
     }
     },
     {
@@ -241,15 +240,6 @@ STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIRS = (os.path.join('static'), )
 
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES':
-        ('rest_framework.authentication.TokenAuthentication',)
-    }
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
@@ -276,7 +266,7 @@ CONSTANCE_CONFIG_FIELDSETS = {
     'Theme Options': ('THEME',),
 }
 CHOICES_SEPARATOR = ','
-
+REST_USE_JWT = True
 
 #Email setting
 EMAIL_USE_TLS = True
@@ -285,6 +275,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'ddkyuma.programmer@gmail.com'
 EMAIL_HOST_PASSWORD = 'farzad1369'
 EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 try:
     from local_settings import *
