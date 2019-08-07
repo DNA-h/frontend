@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from corsheaders.defaults import default_headers
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -119,14 +121,16 @@ INSTALLED_APPS = [
     # 'djstripe',
     'drf_yasg',
     'constance',
-    'drfpasswordless',
-    'bootstrap4',
+    # 'drfpasswordless',
+    # 'bootstrap4',
     'user',
+    'corsheaders'
 ]
 
 SITE_ID = 1
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -136,6 +140,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = default_headers + (
+    'access-control-allow-headers',
+    'access-control-allow-methods',
+    'access-control-allow-origin'
+)
 
 ROOT_URLCONF = 'mahimo.urls'
 
@@ -266,7 +278,7 @@ CONSTANCE_CONFIG_FIELDSETS = {
     'Theme Options': ('THEME',),
 }
 CHOICES_SEPARATOR = ','
-REST_USE_JWT = True
+
 
 #Email setting
 EMAIL_USE_TLS = True
