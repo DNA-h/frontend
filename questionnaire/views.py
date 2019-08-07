@@ -151,6 +151,9 @@ def get_question_list(request,id):
                         r["question_text"] = question.text
                         r["question_order"] = question.order
                         r["question_required"] = question.required
+                        r["question_required"] = question.required
+                        r["question_type"] = question.type
+                        r["question_choices"] = question.choices
                         r["category_name"] = question.category.name
                         r["category_order"] = question.category.order
                         r["category_description"] = question.category.description
@@ -173,6 +176,8 @@ def get_question_detail(request,id ):
         r["question_text"] = question.text
         r["question_order"] = question.order
         r["question_required"] = question.required
+        r["question_type"] = question.type
+        r["question_choices"] = question.choices
         r["category_name"] = question.category.name
         r["category_order"] = question.category.order
         r["category_description"] = question.category.description
