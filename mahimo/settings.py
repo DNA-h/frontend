@@ -124,7 +124,6 @@ INSTALLED_APPS = [
     # 'drfpasswordless',
     # 'bootstrap4',
     'user',
-    'corsheaders'
 ]
 
 SITE_ID = 1
@@ -168,11 +167,11 @@ TEMPLATES = [
     },
 ]
 
-# # AllAuth Configuration
-# AUTHENTICATION_BACKENDS = (
-#     'django.contrib.auth.backends.ModelBackend',
-#     'allauth.account.auth_backends.AuthenticationBackend',
-# )
+# AllAuth Configuration
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 
 
@@ -290,6 +289,6 @@ EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 try:
-    from local_settings import *
+    from mahimo.local_settings import *
 except ImportError:
     pass

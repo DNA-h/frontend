@@ -38,8 +38,9 @@ urlpatterns = [
     # path("stripe/", include("djstripe.urls", namespace="djstripe")),
     path(r"q/", include("questionnaire.urls")),
     path('', HomePageView.as_view(), name="home"),
-    path('', include('drfpasswordless.urls')),
+    # path('', include('drfpasswordless.urls')),
     path(r'rest-auth/', include('rest_auth.urls')),
-    path(r'rest-auth/registration/', include('rest_auth.registration.urls'))
+    path(r'rest-auth/registration/', include('rest_auth.registration.urls')),
+    path(r'accounts/', include('allauth.urls')),
 
 ]
