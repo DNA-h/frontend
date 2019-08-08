@@ -25,8 +25,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 # with an unverified e-mail address. In case of "optional", the e-mail
 # verification mail is still sent, whereas in case of "none" no e-mail
 # verification mails are sent.
-# ACCOUNT_EMAIL_VERIFICATION = "optional"
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 
 # Subject-line prefix to use for email messages sent. By default, the name
@@ -101,6 +101,7 @@ REST_USE_JWT = True
 
 REST_SESSION_LOGIN = True
 # Dictionary containing provider specific settings.
+
 SOCIALACCOUNT_PROVIDERS = {
     'github': {
         'SCOPE': [

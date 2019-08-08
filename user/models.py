@@ -1,16 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from model_utils.models import TimeStampedModel
-from django.db import models
 
 class User(AbstractUser, TimeStampedModel):
-    email = models.EmailField(
-        verbose_name='email address',
-        max_length=255,
-        unique=True,
-    )
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username','password']
-
+    pass
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
