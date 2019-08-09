@@ -4,7 +4,7 @@
 # Specifies the login method to use -- whether the user logs in by entering
 # their username, e-mail address, or either one of both. Possible values
 # are 'username' | 'email' | 'username_email'
-ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_AUTHENTICATION_METHOD = "username"
 
 # The URL to redirect to after a successful e-mail confirmation, in case of
 # an authenticated user. Default is settings.LOGIN_REDIRECT_URL

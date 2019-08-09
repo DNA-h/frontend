@@ -1,12 +1,19 @@
+from django.contrib.auth import (
+    login as django_login,
+    logout as django_logout
+)
 from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic.base import TemplateView
+from rest_auth.serializers import LoginSerializer
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, GenericAPIView
 from rest_framework import status
 from allauth.account import app_settings as auth_settings
+from allauth.account.models import  EmailConfirmation
 from rest_auth.app_settings import (TokenSerializer,
                                     JWTSerializer,
                                     create_token)
@@ -37,16 +44,7 @@ class RegisterView(CreateAPIView):
         if auth_settings.EMAIL_VERIFICATION == \
                 auth_settings.EmailVerificationMethod.MANDATORY:
             return {"detail": _("Verification e-mail sent.")}
-
-        if getattr(settings, 'REST_USE_JWT', False):
-            data = {
-                'user': user,
-                'token': self.token
-            }
-
-            return JWTSerializer(data).data
-        else:
-            return TokenSerializer(user.auth_token).data
+        return TokenSerializer(user.auth_token).data
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -70,3 +68,50 @@ class RegisterView(CreateAPIView):
                         None)
         return user
 
+
+
+class LoginView(GenericAPIView):
+
+    permission_classes = (AllowAny,)
+    serializer_class = LoginSerializer
+    token_model = TokenModel
+
+    @sensitive_post_parameters_m
+    def dispatch(self, *args, **kwargs):
+        return super(LoginView, self).dispatch(*args, **kwargs)
+
+    def process_login(self):
+        django_login(self.request, self.user)
+
+    def get_response_serializer(self):
+        response_serializer = TokenSerializer
+        return response_serializer
+
+    def login(self):
+        self.user = self.serializer.validated_data['user']
+        self.token = create_token(self.token_model, self.user,
+                                      self.serializer)
+        if getattr(settings, 'REST_SESSION_LOGIN', True):
+            self.process_login()
+
+    def get_response(self):
+        serializer_class = self.get_response_serializer()
+        serializer = serializer_class(instance=self.token,
+                                          context={'request': self.request})
+
+        response = Response(serializer.data, status=status.HTTP_200_OK)
+        return response
+
+    def post(self, request, *args, **kwargs):
+        self.request = request
+        self.serializer = self.get_serializer(data=self.request.data,
+                                              context={'request': request})
+        check = self.serializer.is_valid(raise_exception=True)
+        if check:
+            if auth_settings.EMAIL_VERIFICATION == \
+                    auth_settings.EmailVerificationMethod.MANDATORY:
+                    verified = EmailConfirmation.objects.get(email_address = request.data['email'])
+                    if not verified:
+                        return "You need to confirm email"
+        self.login()
+        return self.get_response()

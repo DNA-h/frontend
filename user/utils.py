@@ -41,17 +41,7 @@ def send_email_confirmation(request, user, signup=False):
 def send_mail(request, user, email_verification,
                   redirect_url=None, signal_kwargs=None,
                   signup=False):
-    """
-    Keyword arguments:
 
-    signup -- Indicates whether or not sending the
-    email is essential (during signup), or if it can be skipped (e.g. in
-    case email verification is optional and we are only logging in).
-    """
-    # Local users are stopped due to form validation checking
-    # is_active, yet, adapter methods could toy with is_active in a
-    # `user_signed_up` signal. Furthermore, social users should be
-    # stopped anyway.
     adapter = get_adapter(request)
     if not user.is_active:
         return adapter.respond_user_inactive(request, user)
