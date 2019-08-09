@@ -95,6 +95,14 @@ class Response(models.Model):
         null=True,
         blank=True,
     )
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        verbose_name=_("Category"),
+        blank=True,
+        null=True,
+        related_name="responses",
+    )
     interview_uuid = models.CharField(_("Interview unique identifier"), max_length=36)
 
     class Meta(object):
