@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic.base import TemplateView
 from rest_auth.serializers import LoginSerializer
+from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView, GenericAPIView
@@ -21,6 +22,7 @@ from rest_auth.models import TokenModel
 from rest_auth.utils import jwt_encode
 from rest_auth.registration.app_settings import RegisterSerializer, register_permission_classes
 
+from user.models import User
 from user.utils import complete_signup
 
 sensitive_post_parameters_m = method_decorator(
@@ -46,23 +48,44 @@ class RegisterView(CreateAPIView):
             return {"detail": _("Verification e-mail sent.")}
         return TokenSerializer(user.auth_token).data
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
 
+
+    def create(self, request, *args, **kwargs):
+        try:
+            _user = User.objects.get(username=self.request.data['username']
+                                , email=self.request.data['email'])
+        except:
+            _user = None
+        if _user:
+            user = _user
+            self.create_new_token(user)
+            headers = {}
+        else:
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            user = self.perform_create(serializer)
+            headers = self.get_success_headers(serializer.data)
         return Response(self.get_response_data(user),
                         status=status.HTTP_201_CREATED,
                         headers=headers)
 
     def perform_create(self, serializer):
+
         user = serializer.save(self.request)
         create_token(self.token_model, user, serializer)
         complete_signup(self.request._request, user,
                         auth_settings.EMAIL_VERIFICATION,
                         None)
         return user
+
+    def create_new_token(self,user):
+        try:
+            Token.objects.get(user=user).delete()
+        except:
+            pass
+        create_token(self.token_model, user , None)
+
+
 
 
 
