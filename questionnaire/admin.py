@@ -30,20 +30,21 @@ class AnswerBaseInline(admin.StackedInline):
     model = Answer
 class ResponseAdmin(admin.ModelAdmin):
     raw_id_fields = ('questionnaire', 'user', "category")
-    list_display = ("questionnaire", "user","created","interview_uuid")
+    list_display = ("questionnaire", "user","created")
+    fields = ("questionnaire", "user","created","updated")
     list_filter = ("questionnaire", "created")
     date_hierarchy = "created"
     inlines = [AnswerBaseInline]
     # specifies the order as well as which fields to act on
     # readonly_fields = ("questionnaire", "created", "updated", "interview_uuid", "user")
-    # readonly_fields = ( "created", "updated", "interview_uuid",)
+    readonly_fields = ( "created", "updated",)
 
 
 
 class AnswerAdmin(admin.ModelAdmin):
     raw_id_fields = ('question',)
-    fields = ("question","_question_text", "body")
-    readonly_fields = ("_question_text",)
+    fields = ("question","_question_text", "body","created","updated")
+    readonly_fields = ("_question_text","created","updated",)
     def _question_text(self, obj):
         return obj.question.text
 
