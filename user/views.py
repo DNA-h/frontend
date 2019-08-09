@@ -1,8 +1,10 @@
+import datetime
 from django.contrib.auth import (
     login as django_login,
     logout as django_logout
 )
 from django.conf import settings
+from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.debug import sensitive_post_parameters
@@ -14,14 +16,12 @@ from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView, GenericAPIView
 from rest_framework import status
 from allauth.account import app_settings as auth_settings
-from allauth.account.models import  EmailConfirmation
+from allauth.account.models import EmailConfirmation, EmailAddress, EmailConfirmationHMAC
 from rest_auth.app_settings import (TokenSerializer,
                                     JWTSerializer,
                                     create_token)
 from rest_auth.models import TokenModel
-from rest_auth.utils import jwt_encode
 from rest_auth.registration.app_settings import RegisterSerializer, register_permission_classes
-
 from user.models import User
 from user.utils import complete_signup
 
@@ -56,16 +56,30 @@ class RegisterView(CreateAPIView):
                                 , email=self.request.data['email'])
         except:
             _user = None
-        if _user:
-            user = _user
-            self.create_new_token(user)
-            headers = {}
+        try:
+            verified = EmailAddress.objects.get(email=request.data['email']).verified
+        except:
+            verified = None
+        a=False
+        if _user and settings.ACCOUNT_LOGIN_BY_MAIL:
+            if auth_settings.EMAIL_VERIFICATION == \
+                    auth_settings.EmailVerificationMethod.MANDATORY\
+                    and not verified:
+                a = True
+            else:
+                user = _user
+                self.create_new_token(user)
+                headers = {}
         else:
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
             user = self.perform_create(serializer)
             headers = self.get_success_headers(serializer.data)
-        return Response(self.get_response_data(user),
+        if a:
+            return Response("You need to confirm email",
+                            status=status.HTTP_200_OK)
+        else:
+            return Response(self.get_response_data(user),
                         status=status.HTTP_201_CREATED,
                         headers=headers)
 
@@ -84,6 +98,31 @@ class RegisterView(CreateAPIView):
         except:
             pass
         create_token(self.token_model, user , None)
+
+
+def VerifyEmailView(request, *args, **kwargs):
+    emailadresses = EmailAddress.objects.all()
+    for emailadress in emailadresses:
+        emailconfirmation = EmailConfirmation.objects.\
+            get(email_address=emailadress)
+        sent_date = emailconfirmation.sent.date()
+        now = datetime.datetime.now().date()
+        diff = now - sent_date
+        if diff.days <= settings.ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS:
+            if emailconfirmation.key == kwargs['key'].lower():
+                if not emailadress.verified:
+                    emailadress.verified = True
+                    emailadress.save()
+            return Response("Your account is active, go to login page",
+                            status=status.HTTP_200_OK)
+        elif emailadress.verified:
+            return Response("Your account was active, go to login page",
+                            status=status.HTTP_200_OK)
+            # return redirect('http://127.0.0.1:8001/admin/')
+
+        else:
+            return Response("Your link for activation is expired, go to signup page",
+                            status=status.HTTP_200_OK)
 
 
 
