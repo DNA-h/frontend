@@ -3,39 +3,34 @@ import Notification from './Notification';
 import QuestionList from './QuestionList';
 
 
-function App() {
-  let notification = {
-    message: "Hello world",
-    type: "error"
-  };
+class App extends React.Component {
 
-  let questions = 
-     [{
-      question: 'What is the average the airspeed velocity of a (European) unladen swallow?',
-      answer: '11 meters per second'
-    },
-    {
-      question: 'What are the first 10 digits of PI?',
-      answer: '3.141592653'
-    },
-    {
-      question: 'What is your preferred javascript framework?',
-      answer: 'React'
+  constructor(props) {
+    super(props);
+    this.notification = {
+      message: undefined,
+      type: "error",
+    };
+    this.state ={
+      questions:[]
     }
+  }
 
-    ]
-  
+  async componentDidMount() {
+    fetch("http://127.0.0.1:8000/q/1/").then((res) =>
+      res.json().then((result) => this.setState({questions:result}))
+    )
+  }
 
-  return (
-    <div id="app">
-      <Notification notificationMessage={notification} />
-      <QuestionList questions={questions}/>
-    </div>
-  )
+  render() {
+    return (
+      <div id="app">
+        <Notification notificationMessage={this.notification}/>
+        <QuestionList questions={this.state.questions}/>
+      </div>
+    )
+  }
 }
-
-
-
 
 
 export default App;

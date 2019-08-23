@@ -7,7 +7,7 @@ class Notification extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            message: 'Should we bake a pie?',
+            message: undefined,
             type: 'message',
             visibility: true
         }
@@ -49,13 +49,13 @@ class Notification extends Component {
                         }
                     </div>
                 }
-                <Confirmation
+              {this.state.message && <Confirmation
                     message={this.state.message}
                     accept={this.accept}
                     decline={this.decline}
                     hideConfirmation={this.hideConfirmation}
                     visibility={this.state.visibility}
-                />
+                />}
             </div>
 
         )
